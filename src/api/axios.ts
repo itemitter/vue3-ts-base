@@ -76,14 +76,10 @@ service.interceptors.request.use(async (config: AxiosRequestConfig) => {
     let userAccount = ''
     // 若存在username，则为登录情况，判断user-account
     if (config.params.username) {
-      userAccount = config.params.username.includes('-')
-        ? 'ACCOUNT_USER'
-        : 'ADMIN_USER'
+      userAccount = config.params.username.includes('-') ? 'ACCOUNT_USER' : 'ADMIN_USER'
     } else {
       // 刷新token情况，通过用户信息email是否有值判断
-      userAccount = Store.state.user.userDetail.email
-        ? 'ADMIN_USER'
-        : 'ACCOUNT_USER'
+      userAccount = Store.state.user.userDetail.email ? 'ADMIN_USER' : 'ACCOUNT_USER'
     }
 
     config.headers['User-Account'] = userAccount
@@ -124,9 +120,7 @@ service.interceptors.response.use(
     }
 
     if (error.response) {
-      __emsg = error.response.data.message
-        ? error.response.data.message
-        : error.response.data.data
+      __emsg = error.response.data.message ? error.response.data.message : error.response.data.data
     }
     // timeout
     if (__emsg.indexOf('timeout') >= 0) {

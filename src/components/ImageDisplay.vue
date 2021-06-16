@@ -4,13 +4,7 @@
       <img class="img" :src="list[activeIndex].image" alt="" />
     </div>
     <div class="right">
-      <div
-        class="r-list-item"
-        :class="{ active: index === activeIndex }"
-        v-for="(item, index) of list"
-        :key="index"
-        @mouseenter="changeActiveIndex(index)"
-      >
+      <div class="r-list-item" :class="{ active: index === activeIndex }" v-for="(item, index) of list" :key="index" @mouseenter="changeActiveIndex(index)">
         <img :src="item.icon" alt="" v-if="index !== activeIndex" />
         <span class="sub-title-1">{{ item.title }}</span>
       </div>
